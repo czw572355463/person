@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmpDao">
+
+    <resultMap type="com.entity.Emp" id="EmpMap">
+        <result property="eId" column="e_id" jdbcType="INTEGER"/>
+        <result property="dId" column="d_id" jdbcType="INTEGER"/>
+        <result property="jId" column="j_id" jdbcType="INTEGER"/>
+        <result property="eName" column="e_name" jdbcType="VARCHAR"/>
+        <result property="eCardid" column="e_cardid" jdbcType="VARCHAR"/>
+        <result property="eAddress" column="e_address" jdbcType="VARCHAR"/>
+        <result property="ePostcode" column="e_postCode" jdbcType="VARCHAR"/>
+        <result property="ePhone" column="e_phone" jdbcType="VARCHAR"/>
+        <result property="eEmail" column="e_email" jdbcType="VARCHAR"/>
+        <result property="eSex" column="e_sex" jdbcType="VARCHAR"/>
+        <result property="eBirthday" column="e_birthday" jdbcType="TIMESTAMP"/>
+        <result property="eCreatedate" column="e_createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EmpMap">
+        select
+          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+        from hrm_db.emp
+        where e_id = #{eId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EmpMap">
+        select
+          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+        from hrm_db.emp
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="EmpMap">
+        select
+          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+        from hrm_db.emp
+        <where>
+            <if test="eId != null">
+                and e_id = #{eId}
+            </if>
+            <if test="dId != null">
+                and d_id = #{dId}
+            </if>
+            <if test="jId != null">
+                and j_id = #{jId}
+            </if>
+            <if test="eName != null and eName != ''">
+                and e_name = #{eName}
+            </if>
+            <if test="eCardid != null and eCardid != ''">
+                and e_cardid = #{eCardid}
+            </if>
+            <if test="eAddress != null and eAddress != ''">
+                and e_address = #{eAddress}
+            </if>
+            <if test="ePostcode != null and ePostcode != ''">
+                and e_postCode = #{ePostcode}
+            </if>
+            <if test="ePhone != null and ePhone != ''">
+                and e_phone = #{ePhone}
+            </if>
+            <if test="eEmail != null and eEmail != ''">
+                and e_email = #{eEmail}
+            </if>
+            <if test="eSex != null and eSex != ''">
+                and e_sex = #{eSex}
+            </if>
+            <if test="eBirthday != null">
+                and e_birthday = #{eBirthday}
+            </if>
+            <if test="eCreatedate != null">
+                and e_createDate = #{eCreatedate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="eId" useGeneratedKeys="true">
+        insert into hrm_db.emp(d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate)
+        values (#{dId}, #{jId}, #{eName}, #{eCardid}, #{eAddress}, #{ePostcode}, #{ePhone}, #{eEmail}, #{eSex}, #{eBirthday}, #{eCreatedate})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hrm_db.emp
+        <set>
+            <if test="dId != null">
+                d_id = #{dId},
+            </if>
+            <if test="jId != null">
+                j_id = #{jId},
+            </if>
+            <if test="eName != null and eName != ''">
+                e_name = #{eName},
+            </if>
+            <if test="eCardid != null and eCardid != ''">
+                e_cardid = #{eCardid},
+            </if>
+            <if test="eAddress != null and eAddress != ''">
+                e_address = #{eAddress},
+            </if>
+            <if test="ePostcode != null and ePostcode != ''">
+                e_postCode = #{ePostcode},
+            </if>
+            <if test="ePhone != null and ePhone != ''">
+                e_phone = #{ePhone},
+            </if>
+            <if test="eEmail != null and eEmail != ''">
+                e_email = #{eEmail},
+            </if>
+            <if test="eSex != null and eSex != ''">
+                e_sex = #{eSex},
+            </if>
+            <if test="eBirthday != null">
+                e_birthday = #{eBirthday},
+            </if>
+            <if test="eCreatedate != null">
+                e_createDate = #{eCreatedate},
+            </if>
+        </set>
+        where e_id = #{eId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hrm_db.emp where e_id = #{eId}
+    </delete>
+
+</mapper>
