@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UsersDao">
+
+    <resultMap type="com.entity.Users" id="UsersMap">
+        <result property="uId" column="u_id" jdbcType="INTEGER"/>
+        <result property="uLoginname" column="u_loginname" jdbcType="VARCHAR"/>
+        <result property="uPass" column="u_pass" jdbcType="VARCHAR"/>
+        <result property="uState" column="u_state" jdbcType="VARCHAR"/>
+        <result property="uName" column="u_name" jdbcType="VARCHAR"/>
+        <result property="uDate" column="u_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UsersMap">
+        select
+          u_id, u_loginname, u_pass, u_state, u_name, u_date
+        from hrm_db.users
+        where u_id = #{uId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UsersMap">
+        select
+          u_id, u_loginname, u_pass, u_state, u_name, u_date
+        from hrm_db.users
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UsersMap">
+        select
+          u_id, u_loginname, u_pass, u_state, u_name, u_date
+        from hrm_db.users
+        <where>
+            <if test="uId != null">
+                and u_id = #{uId}
+            </if>
+            <if test="uLoginname != null and uLoginname != ''">
+                and u_loginname = #{uLoginname}
+            </if>
+            <if test="uPass != null and uPass != ''">
+                and u_pass = #{uPass}
+            </if>
+            <if test="uState != null and uState != ''">
+                and u_state = #{uState}
+            </if>
+            <if test="uName != null and uName != ''">
+                and u_name = #{uName}
+            </if>
+            <if test="uDate != null">
+                and u_date = #{uDate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="uId" useGeneratedKeys="true">
+        insert into hrm_db.users(u_loginname, u_pass, u_state, u_name, u_date)
+        values (#{uLoginname}, #{uPass}, #{uState}, #{uName}, #{uDate})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update hrm_db.users
+        <set>
+            <if test="uLoginname != null and uLoginname != ''">
+                u_loginname = #{uLoginname},
+            </if>
+            <if test="uPass != null and uPass != ''">
+                u_pass = #{uPass},
+            </if>
+            <if test="uState != null and uState != ''">
+                u_state = #{uState},
+            </if>
+            <if test="uName != null and uName != ''">
+                u_name = #{uName},
+            </if>
+            <if test="uDate != null">
+                u_date = #{uDate},
+            </if>
+        </set>
+        where u_id = #{uId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from hrm_db.users where u_id = #{uId}
+    </delete>
+
+</mapper>
