@@ -4,6 +4,7 @@ import com.entity.Users;
 import com.service.UsersService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -14,12 +15,12 @@ import javax.annotation.Resource;
  * @since 2020-05-26 13:13:50
  */
 @RestController
-@RequestMapping("users")
 public class UsersController {
     /**
      * 服务对象
      */
     @Resource
+
     private UsersService usersService;
 
     /**
@@ -33,11 +34,12 @@ public class UsersController {
         return this.usersService.queryById(id);
     }
 
-    @GetMapping("login")
-    public String login(String uLoginname ,String uPass){
+    @RequestMapping("login")
+    public ModelAndView login(String uLoginname , String uPass){
         System.out.println("uLoginname : " + uLoginname);
         System.out.println("uPass : " + uPass);
-        return "index.jsp";
+        ModelAndView index = new ModelAndView("/jsp/index");
+        return index;
     }
 
 }
