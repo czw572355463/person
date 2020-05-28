@@ -98,7 +98,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li role="presentation">
-                    <a href="#">当前用户：<span class="badge"></span></a>
+                    <a href="#">当前用户：<span class="badge"><%=request.getSession().getAttribute("username") %> </span></a>
                 </li>
                 <li>
                     <a href="../login.jsp">
@@ -117,37 +117,50 @@
                 <a href="users.jsp" target="mainFrame" >用户管理界面</a>
             </li>
             <li role="presentation">
-                <a href="emp.jsp" target="mainFrame">员工管理界面</a>
+                <a href="job.jsp" target="mainFrame">职位管理界面</a>
             </li>
             <li role="presentation">
-                <a href="#" target="mainFrame">部门管理界面</a>
+                <a href="dept.jsp" target="mainFrame">部门管理界面</a>
             </li>
+
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    导航链接4<span class="caret"></span>
+                    员工管理<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" target="mainFrame">导航链接4-1</a>
+                        <a href="emp.jsp" target="mainFrame">查看员工</a>
                     </li>
                     <li>
-                        <a href="#" target="mainFrame">导航链接4-2</a>
-                    </li>
-                    <li>
-                        <a href="#" target="mainFrame">导航链接4-3</a>
+                        <a href="#" target="mainFrame">新增员工</a>
                     </li>
                 </ul>
             </li>
-            <li role="presentation">
-                <a href="#" target="mainFrame">导航链接5</a>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    文档界面<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" target="mainFrame">下载文档</a>
+                    </li>
+                    <li>
+                        <a href="#" target="mainFrame">上传文档</a>
+                    </li>
+                </ul>
             </li>
+
+            <li role="presentation">
+                <a href="#" target="mainFrame">公告管理</a>
+            </li>
+
         </ul>
     </div>
     <!-- 左侧导航和正文内容的分隔线 -->
     <div class="splitter"></div>
     <!-- 正文内容部分 -->
     <div class="pageContent" style="height: 80%;width: 100%">
-        <iframe src="index.html" id="mainFrame" name="mainFrame" frameborder="0" width="100%"  height="100%" frameBorder="0"></iframe>
+        <iframe src="users.jsp" id="mainFrame" name="mainFrame" frameborder="0" width="100%"  height="100%" frameBorder="0"></iframe>
     </div>
 </div>
 <!-- 底部页脚部分 -->

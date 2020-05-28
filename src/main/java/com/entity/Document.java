@@ -1,5 +1,8 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -19,7 +22,9 @@ public class Document implements Serializable {
     private String dFilename;
     
     private String dRemark;
-    
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dCreatedate;
     
     private Integer uId;

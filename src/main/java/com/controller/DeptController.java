@@ -2,6 +2,7 @@ package com.controller;
 
 import com.entity.Dept;
 import com.service.DeptService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,4 +33,10 @@ public class DeptController {
         return this.deptService.queryById(id);
     }
 
+    @GetMapping("showAll")
+    @ResponseBody
+    public List<Dept> showAll(int pageNum , int size){
+        List<Dept> deptList = this.deptService.queryAllByLimit(pageNum,size);
+        return deptList;
+    }
 }

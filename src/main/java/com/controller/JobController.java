@@ -2,6 +2,7 @@ package com.controller;
 
 import com.entity.Job;
 import com.service.JobService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,8 +29,14 @@ public class JobController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
+    @ResponseBody
     public Job selectOne(Integer id) {
         return this.jobService.queryById(id);
     }
 
+
+    @GetMapping("showAll")
+    public List<Job> showAll(int pageNum,int size){
+        return this.jobService.queryAllByLimit(pageNum, size);
+    }
 }

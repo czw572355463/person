@@ -1,5 +1,8 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -21,7 +24,8 @@ public class Users implements Serializable {
     private String uState;
     
     private String uName;
-    
+
+
     private Date uDate;
 
 
