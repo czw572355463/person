@@ -88,4 +88,17 @@
         delete from hrm_db.users where u_id = #{uId}
     </delete>
 
+    <select id="login" resultMap="UsersMap">
+        select
+          u_id, u_loginname, u_pass, u_state, u_name, u_date
+        from hrm_db.users
+        <where>
+            <if test="uPass != null">
+              and u_pass =#{uPass}
+            </if>
+            <if test="uLoginname != null">
+                and u_name = #{uLoginname}
+            </if>
+        </where>
+    </select>
 </mapper>

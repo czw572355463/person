@@ -93,15 +93,15 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" title="logoTitle" href="#">Neo Yang</a>
+            <a class="navbar-brand" title="logoTitle" href="#"> Chen </a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li role="presentation">
-                    <a href="#">当前用户：<span class="badge">TestUser</span></a>
+                    <a href="#">当前用户：<span class="badge"></span></a>
                 </li>
                 <li>
-                    <a href="../login/logout">
+                    <a href="../login.jsp">
                         <span class="glyphicon glyphicon-lock"></span>退出登录</a>
                 </li>
             </ul>
@@ -114,13 +114,13 @@
     <div class="pageSidebar">
         <ul class="nav nav-stacked nav-pills">
             <li role="presentation">
-                <a href="#" target="mainFrame" >导航链接1</a>
+                <a href="users.jsp" target="mainFrame" >用户管理界面</a>
             </li>
             <li role="presentation">
-                <a href="#" target="mainFrame">导航链接2</a>
+                <a href="emp.jsp" target="mainFrame">员工管理界面</a>
             </li>
             <li role="presentation">
-                <a href="#" target="mainFrame">导航链接3</a>
+                <a href="#" target="mainFrame">部门管理界面</a>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

@@ -76,4 +76,18 @@ public class UsersServiceImpl implements UsersService {
     public boolean deleteById(Integer uId) {
         return this.usersDao.deleteById(uId) > 0;
     }
+
+    /**
+     * 执行登陆操作
+     * @param users
+     * @return
+     */
+    @Override
+    public boolean login(Users users) {
+        Users temp = this.usersDao.login(users);
+        if(temp == null)
+            return false;
+        else
+            return true;
+    }
 }

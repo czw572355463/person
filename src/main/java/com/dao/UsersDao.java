@@ -62,4 +62,10 @@ public interface UsersDao {
      */
     int deleteById(Integer uId);
 
+    /**
+     * 执行登陆操作
+     * @param users
+     * @return
+     */
+    Users login(Users users);
 }

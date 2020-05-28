@@ -52,4 +52,10 @@ public interface UsersService {
      */
     boolean deleteById(Integer uId);
 
+    /**
+     * 执行登陆操作
+     * @param users
+     * @return
+     */
+    boolean login(Users users);
 }
