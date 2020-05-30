@@ -145,10 +145,10 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" target="mainFrame">下载文档</a>
+                        <a href="fileDownload.jsp" target="mainFrame">下载文档</a>
                     </li>
                     <li>
-                        <a href="#" target="mainFrame">上传文档</a>
+                        <a href="fileUpload.jsp" target="mainFrame">上传文档</a>
                     </li>
                 </ul>
             </li>

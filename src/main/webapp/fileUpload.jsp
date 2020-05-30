@@ -6,30 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
- <form>
+ <form method="post" enctype="multipart/form-data" action="/document/upload">
      <fieldset>
          <legend>文件上传</legend>
-         <input type="file" name="uploadfile"><button>上传</button>
+         文件名 : <input type="text" name="dFilename">
+         <input type="file" name="file">
+         <button type="submit">上传</button>
      </fieldset>
  </form>
-<table class="table table-bordered">
-    <tr>
-        <th>序号</th>
-        <th>文件名</th>
-        <th>文件大小</th>
-        <th>操作</th>
-    </tr>
-    <tr>
-        <td>测试数据</td>
-        <td>测试数据</td>
-        <td>测试数据</td>
-        <td><button class="btn btn-default">下载</button><button class="btn btn-danger">删除</button></td>
-    </tr>
-</table>
 </body>
 </html>

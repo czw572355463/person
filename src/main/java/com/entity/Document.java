@@ -29,12 +29,11 @@ public class Document implements Serializable {
     
     private Integer uId;
 
-
-    public Integer getDId() {
+    public Integer getdId() {
         return dId;
     }
 
-    public void setDId(Integer dId) {
+    public void setdId(Integer dId) {
         this.dId = dId;
     }
 
@@ -46,36 +45,35 @@ public class Document implements Serializable {
         this.dFilepath = dFilepath;
     }
 
-    public String getDFilename() {
+    public String getdFilename() {
         return dFilename;
     }
 
-    public void setDFilename(String dFilename) {
+    public void setdFilename(String dFilename) {
         this.dFilename = dFilename;
     }
 
-    public String getDRemark() {
+    public String getdRemark() {
         return dRemark;
     }
 
-    public void setDRemark(String dRemark) {
+    public void setdRemark(String dRemark) {
         this.dRemark = dRemark;
     }
 
-    public Date getDCreatedate() {
+    public Date getdCreatedate() {
         return dCreatedate;
     }
 
-    public void setDCreatedate(Date dCreatedate) {
+    public void setdCreatedate(Date dCreatedate) {
         this.dCreatedate = dCreatedate;
     }
 
-    public Integer getUId() {
+    public Integer getuId() {
         return uId;
     }
 
-    public void setUId(Integer uId) {
+    public void setuId(Integer uId) {
         this.uId = uId;
     }
-
 }

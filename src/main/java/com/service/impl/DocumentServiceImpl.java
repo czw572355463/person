@@ -63,7 +63,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public Document update(Document document) {
         this.documentDao.update(document);
-        return this.queryById(document.getDId());
+        return this.queryById(document.getdId());
     }
 
     /**

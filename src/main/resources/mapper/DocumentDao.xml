@@ -4,7 +4,7 @@
 
     <resultMap type="com.entity.Document" id="DocumentMap">
         <result property="dId" column="d_id" jdbcType="INTEGER"/>
-        <result property="dTitle" column="d_title" jdbcType="VARCHAR"/>
+        <result property="dFilepath" column="d_filepath" jdbcType="VARCHAR"/>
         <result property="dFilename" column="d_filename" jdbcType="VARCHAR"/>
         <result property="dRemark" column="d_remark" jdbcType="VARCHAR"/>
         <result property="dCreatedate" column="d_createDate" jdbcType="TIMESTAMP"/>
@@ -36,8 +36,8 @@
             <if test="dId != null">
                 and d_id = #{dId}
             </if>
-            <if test="dTitle != null and dTitle != ''">
-                and d_title = #{dTitle}
+            <if test="dFilepath != null and dTitle != ''">
+                and d_filepath = #{dFilepath}
             </if>
             <if test="dFilename != null and dFilename != ''">
                 and d_filename = #{dFilename}
@@ -57,14 +57,14 @@
     <!--新增所有列-->
     <insert id="insert" keyProperty="dId" useGeneratedKeys="true">
         insert into hrm_db.document(d_filepath, d_filename, d_remark, d_createDate, u_id)
-        values (#{dTitle}, #{dFilename}, #{dRemark}, #{dCreatedate}, #{uId})
+        values (#{dFilepath}, #{dFilename}, #{dRemark}, #{dCreatedate}, #{uId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
         update hrm_db.document
         <set>
-            <if test="dTitle != null and dTitle != ''">
+            <if test="dFilepath != null and dFilepath != ''">
                 d_title = #{dTitle},
             </if>
             <if test="dFilename != null and dFilename != ''">
