@@ -2,6 +2,7 @@ package com.controller;
 
 import com.entity.Emp;
 import com.service.EmpService;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,4 +33,8 @@ public class EmpController {
         return this.empService.queryById(id);
     }
 
+    @GetMapping("showAll")
+    public List<Emp> showAll(int pageNum , int size){
+       return this.empService.queryAllByLimit(pageNum, size);
+    }
 }

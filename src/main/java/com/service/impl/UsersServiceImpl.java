@@ -83,11 +83,11 @@ public class UsersServiceImpl implements UsersService {
      * @return
      */
     @Override
-    public boolean login(Users users) {
+    public Users login(Users users) {
         Users temp = this.usersDao.login(users);
         if(temp == null)
-            return false;
+            return null;
         else
-            return true;
+            return temp;
     }
 }

@@ -14,7 +14,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="DocumentMap">
         select
-          d_id, d_title, d_filename, d_remark, d_createDate, u_id
+          d_id, d_filepath, d_filename, d_remark, d_createDate, u_id
         from hrm_db.document
         where d_id = #{dId}
     </select>
@@ -22,7 +22,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="DocumentMap">
         select
-          d_id, d_title, d_filename, d_remark, d_createDate, u_id
+          d_id, d_filepath, d_filename, d_remark, d_createDate, u_id
         from hrm_db.document
         limit #{offset}, #{limit}
     </select>
@@ -30,7 +30,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="DocumentMap">
         select
-          d_id, d_title, d_filename, d_remark, d_createDate, u_id
+          d_id, d_filepath, d_filename, d_remark, d_createDate, u_id
         from hrm_db.document
         <where>
             <if test="dId != null">
@@ -56,7 +56,7 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="dId" useGeneratedKeys="true">
-        insert into hrm_db.document(d_title, d_filename, d_remark, d_createDate, u_id)
+        insert into hrm_db.document(d_filepath, d_filename, d_remark, d_createDate, u_id)
         values (#{dTitle}, #{dFilename}, #{dRemark}, #{dCreatedate}, #{uId})
     </insert>
 

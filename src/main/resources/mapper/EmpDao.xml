@@ -15,7 +15,19 @@
         <result property="eSex" column="e_sex" jdbcType="VARCHAR"/>
         <result property="eBirthday" column="e_birthday" jdbcType="TIMESTAMP"/>
         <result property="eCreatedate" column="e_createDate" jdbcType="TIMESTAMP"/>
+        <association property="job" autoMapping="true" javaType="com.entity.Job">
+            <id property="jId" column="j_id"></id>
+            <result property="jName" column="j_name"></result>
+            <result property="jRemark" column="j_remark"></result>
+        </association>
+        <association property="dept" autoMapping="true" javaType="com.entity.Dept">
+            <id property="dId" column="d_id"></id>
+            <result property="dName" column="d_name"></result>
+            <result property="dRemark" column="d_remark"></result>
+        </association>
     </resultMap>
+
+
 
     <!--查询单个-->
     <select id="queryById" resultMap="EmpMap">
@@ -28,8 +40,8 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="EmpMap">
         select
-          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
-        from hrm_db.emp
+          e_id, d_name, j_name, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+        from hrm_db.emp inner join  hrm_db.dept inner join hrm_db.job
         limit #{offset}, #{limit}
     </select>
 

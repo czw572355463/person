@@ -17,7 +17,7 @@ public class Document implements Serializable {
     
     private Integer dId;
     
-    private String dTitle;
+    private String dFilepath;
     
     private String dFilename;
     
@@ -38,12 +38,12 @@ public class Document implements Serializable {
         this.dId = dId;
     }
 
-    public String getDTitle() {
-        return dTitle;
+    public String getdFilepath() {
+        return dFilepath;
     }
 
-    public void setDTitle(String dTitle) {
-        this.dTitle = dTitle;
+    public void setdFilepath(String dFilepath) {
+        this.dFilepath = dFilepath;
     }
 
     public String getDFilename() {

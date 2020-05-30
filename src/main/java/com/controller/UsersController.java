@@ -45,15 +45,15 @@ public class UsersController {
     }
 
     @RequestMapping("login")
-    public void login(Users user, HttpServletRequest request , HttpServletResponse response) throws IOException {
+    public void login(Users users, HttpServletRequest request , HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
-        boolean flag =  this.usersService.login(user);
+        Users user =  this.usersService.login(users);
         PrintWriter writer =  response.getWriter();
-        if(!flag){
+        if(user == null){
             writer.print("<script>alert('错误!请检查你的用户名或密码');location.href='../login.jsp'</script>");
         }
         else {
-            request.getSession().setAttribute("username",user.getULoginname());
+            request.getSession().setAttribute("users",user);
             writer.print("<script>location.href='../index.jsp'</script>");
         }
     }

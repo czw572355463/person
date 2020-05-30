@@ -16,7 +16,7 @@
 </head>
 <body>
 <table class="table table-bordered">
-    <caption>用户管理系统</caption>
+    <caption>部门管理界面</caption>
     <thead>
     <tr>
         <th>部门id</th>
@@ -32,19 +32,21 @@
 
 </table>
 <script>
- $.get("dept/showAll","pageNum=1&size=5",function (res) {
-    $("tr1").empty();
+    window.onload = function () {
+        $.get("dept/showAll","pageNum=1&size=5",function (res) {
+        $("tr1").empty();
 
-     for (var i = 0 ; i < res.length; i++){
-         var html = "<tr>";
-         html+= "<td>"+res[i].did +"</td>"
-         html+= "<td>"+res[i].dname +"</td>"
-         html+= "<td>"+res[i].dremark +"</td>"
-         html+="<td><div class='btn-group'><button type='button' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
-         html+="</tr>"
-         $("#tr1").append(html);
-     }
- })
+        for (var i = 0 ; i < res.length; i++){
+            var html = "<tr>";
+            html+= "<td>"+res[i].did +"</td>"
+            html+= "<td>"+res[i].dname +"</td>"
+            html+= "<td>"+res[i].dremark +"</td>"
+            html+="<td><div class='btn-group'><button type='button' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
+            html+="</tr>"
+            $("#tr1").append(html);
+        }
+    }) }
+
 </script>
 </body>
 </html>

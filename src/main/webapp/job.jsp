@@ -16,7 +16,7 @@
 <body>
 
 <table class="table table-bordered">
-    <caption>用户管理系统</caption>
+    <caption>职位管理界面</caption>
     <thead>
     <tr>
         <th>职位ID</th>
@@ -32,18 +32,20 @@
 
 </table>
 <script>
-    $.get("job/showAll","pageNum=1&size=5",function (res) {
-        $("tr1").empty();
-        for (var i = 0 ; i < res.length; i++){
-            var html = "<tr>";
-            html+= "<td>"+res[i].jid +"</td>"
-            html+= "<td>"+res[i].jname +"</td>"
-            html+= "<td>"+res[i].jremark +"</td>"
-            html+="<td><div class='btn-group'><button type='button' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
-            html+="</tr>"
-            $("#tr1").append(html);
-        }
-    })
+    window.onload = function(){
+        $.get("job/showAll","pageNum=1&size=5",function (res) {
+            $("tr1").empty();
+            for (var i = 0 ; i < res.length; i++){
+                var html = "<tr>";
+                html+= "<td>"+res[i].jid +"</td>"
+                html+= "<td>"+res[i].jname +"</td>"
+                html+= "<td>"+res[i].jremark +"</td>"
+                html+="<td><div class='btn-group'><button type='button' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
+                html+="</tr>"
+                $("#tr1").append(html);
+            }
+        })
+    }
 
 </script>
 </body>

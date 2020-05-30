@@ -37,6 +37,6 @@ public class JobController {
 
     @GetMapping("showAll")
     public List<Job> showAll(int pageNum,int size){
-        return this.jobService.queryAllByLimit(pageNum, size);
+        return this.jobService.queryAllByLimit(pageNum - 1 , size);
     }
 }

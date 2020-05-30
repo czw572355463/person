@@ -17,7 +17,7 @@
 <body>
 
 <table class="table table-bordered">
-    <caption>用户管理系统</caption>
+    <caption>用户管理界面</caption>
     <thead>
     <tr>
         <th>用户登录名</th>
@@ -36,10 +36,8 @@
 
 </table>
 
-<a href="#">上一页</a>
-<a href="#">下一页</a>
 <script>
-    $.get("users/showAll","pageNum=1&size=5",function (res) {
+    window.onload = function () { $.get("users/showAll","pageNum=1&size=5",function (res) {
         $("#tr1").empty();
         for (var i = 0 ; i < res.length; i++){
             var html = "<tr>";
@@ -52,7 +50,8 @@
             $("#tr1").append(html);
         }
 
-    })
+    }) }
+
 </script>
 </body>
 </html>

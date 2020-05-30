@@ -1,3 +1,4 @@
+<%@ page import="com.entity.Users" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,6 +90,7 @@
     </style>
 </head>
 <body>
+
 <!--顶部导航栏部分-->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -98,7 +100,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li role="presentation">
-                    <a href="#">当前用户：<span class="badge"><%=request.getSession().getAttribute("username") %> </span></a>
+                    <% Users users = (Users) request.getSession().getAttribute("users");%>
+                    <a href="#">当前用户：<span class="badge"><%= users.getUName() %></span></a>
                 </li>
                 <li>
                     <a href="../login.jsp">

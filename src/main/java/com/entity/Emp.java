@@ -35,6 +35,12 @@ public class Emp implements Serializable {
     
     private String eSex;
 
+    private Job job;
+
+    private Dept dept;
+
+
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date eBirthday;
@@ -140,4 +146,19 @@ public class Emp implements Serializable {
         this.eCreatedate = eCreatedate;
     }
 
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
 }

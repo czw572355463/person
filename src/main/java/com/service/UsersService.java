@@ -57,5 +57,5 @@ public interface UsersService {
      * @param users
      * @return
      */
-    boolean login(Users users);
+    Users login(Users users);
 }
