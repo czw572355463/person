@@ -113,6 +113,7 @@
 </nav>
 <!-- 中间主体内容部分 -->
 <div class="pageContainer">
+
     <!-- 左侧导航栏 -->
     <div class="pageSidebar">
         <ul class="nav nav-stacked nav-pills">
@@ -158,6 +159,7 @@
             </li>
 
         </ul>
+        <img src="imgs/8.gif">
     </div>
     <!-- 左侧导航和正文内容的分隔线 -->
     <div class="splitter"></div>
