@@ -8,6 +8,10 @@
         <result property="nContent" column="n_content" jdbcType="VARCHAR"/>
         <result property="dCreatedate" column="d_createDate" jdbcType="TIMESTAMP"/>
         <result property="uId" column="u_id" jdbcType="INTEGER"/>
+        <association property="users">
+            <id property="uId" column="u_id"></id>
+            <result property="uName" column="u_name"></result>
+        </association>
     </resultMap>
 
     <!--查询单个-->
@@ -21,8 +25,8 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="NoticeMap">
         select
-          n_id, n_title, n_content, d_createDate, u_id
-        from hrm_db.notice
+          n_id, u_name , n_title, n_content, d_createDate, hrm_db.notice.u_id
+        from hrm_db.notice inner join hrm_db.users
         limit #{offset}, #{limit}
     </select>
 

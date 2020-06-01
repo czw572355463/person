@@ -42,5 +42,14 @@
         <property name="basePackage" value="com.dao"></property>
     </bean>
 
+    <bean id="shiroFliter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"></property>
+    </bean>
+
+    <bean id="userRealm" class=""></bean>
 
 </beans>
