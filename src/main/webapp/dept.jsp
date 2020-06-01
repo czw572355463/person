@@ -30,6 +30,38 @@
 
     </tbody>
 
+
+    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">部门修改</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/dept/update" class="bs-example bs-example-form" method="post">
+
+                        <div  class="form-group">
+                            <label for="deptName" class="col-form-label">部门名称</label>
+                            <input type="text" id="deptName" name="dName" class="form-control" placeholder=""/>
+                        </div>
+
+                        <div  class="form-group">
+                            <label for="deptRemark" class="col-form-label">部门描述</label>
+                            <input type="text" id="deptRemark" name="dRemark" class="form-control" placeholder=""/>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">提交更改</button>
+                        </div>
+
+                    </form>
+            </div>
+
+        </div>
+
 </table>
 <script>
     window.onload = function () {
@@ -41,11 +73,27 @@
             html+= "<td>"+res[i].did +"</td>"
             html+= "<td>"+res[i].dname +"</td>"
             html+= "<td>"+res[i].dremark +"</td>"
-            html+="<td><div class='btn-group'><button type='button' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
+            html+="<td><div class='btn-group'><button type='button' data-toggle='modal' data-target='#update'  onclick='update(this)' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
             html+="</tr>"
             $("#tr1").append(html);
         }
     }) }
+
+    var xmlhttp
+    if(window.XMLHttpRequest){
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    
+    function update(obj) {
+            var tr = obj.parentNode.parentNode.parentNode;
+            var deptId = tr.childNodes[0].innerHTML;
+            var deptName = tr.childNodes[1].innerHTML;
+            var deptRemark = tr.childNodes[2].innerHTML;
+
+            $("#deptName").val(deptName)
+            $("#deptRemark").val(deptRemark)
+    }
 
 </script>
 </body>

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
 <c:if test="${empty filelist}">
@@ -30,24 +31,28 @@
     <tr id="${t.dId}">
         <td>${t.dId}</td>
         <td>${t.dFilename}</td>
-        <td>${t.dCreatedate}</td>
+        <td> <fmt:formatDate value="${t.dCreatedate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
         <td>${t.uId}</td>
         <td>
-           <a href="../${t.dFilepath}">下载</a>
-            <button class="btn btn-danger" onclick="deleteDocument(${t.dId})">删除</button></td>
+            <button class="btn btn-primary" onclick="download('${t.dFilepath}')">下载</button>
+            <button class="btn btn-danger" onclick="deleteDocument(${t.dId},'${t.dFilepath}')">删除</button></td>
         </td>
     </tr>
 </c:forEach>
 </table>
 <script>
-    function deleteDocument(id) {
-        $.get("../document/delete","id="+id,function (res) {
+    function deleteDocument(id,filepath) {
+        $.get("../document/delete","id="+id+"&filepath="+filepath,function (res) {
             // console.log(res)
             // $(this).parent().empty();
             // $("body").remove(this.parent())
             window.alert("删除成功")
             location.reload();
         })
+    }
+
+    function download(path) {
+        location.href = "../"+path
     }
 </script>
 </body>

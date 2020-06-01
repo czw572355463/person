@@ -24,6 +24,8 @@
 
 <table class="table table-bordered table-condensed">
     <caption>用户管理系统</caption>
+    <button class="btn btn-primary" onclick="addEmp()">添加用户</button>
+
     <thead>
     <tr>
         <th>职员id</th>
@@ -44,6 +46,11 @@
 
     </tbody>
 <script>
+
+    function addEmp(){
+        location.href = "empAdd.jsp";
+    }
+
     window.onload= function () {
         $.get("emp/showAll","pageNum=1&size=5",function (res) {
             $("#tr1").empty();

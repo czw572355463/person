@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("dept")
 public class DeptController {
+
     /**
      * 服务对象
      */
@@ -38,5 +39,12 @@ public class DeptController {
     public List<Dept> showAll(int pageNum , int size){
         List<Dept> deptList = this.deptService.queryAllByLimit(pageNum - 1,size);
         return deptList;
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public String update(Dept dept){
+        this.deptService.update(dept);
+        return "<script> window.alert('修改成功!');location.reload()</script>";
     }
 }

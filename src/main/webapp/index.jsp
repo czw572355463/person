@@ -136,7 +136,7 @@
                         <a href="emp.jsp" target="mainFrame">查看员工</a>
                     </li>
                     <li>
-                        <a href="#" target="mainFrame">新增员工</a>
+                        <a href="empAdd.jsp" target="mainFrame">新增员工</a>
                     </li>
                 </ul>
             </li>
@@ -159,7 +159,7 @@
             </li>
 
         </ul>
-        <img src="imgs/8.gif">
+        <img src="imgs/8.gif" style="padding-left: 15px;padding-top:350px" width="">
     </div>
     <!-- 左侧导航和正文内容的分隔线 -->
     <div class="splitter"></div>

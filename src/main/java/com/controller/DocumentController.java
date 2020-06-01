@@ -64,7 +64,10 @@ public class DocumentController {
     }
 
     @RequestMapping("delete")
-    public void deleteById(Integer id){
+    public void deleteById(Integer id,@RequestParam(value ="filepath")String path){
+        File f = new File(path);
+        System.err.println(f.getName());
+        f.delete();
         this.documentService.deleteById(id);
     }
 
@@ -73,4 +76,6 @@ public class DocumentController {
         model.addAttribute("filelist",documentService.queryAllByLimit(0,100));
         return "fileDownload";
     }
+
+
 }
