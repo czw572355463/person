@@ -2,6 +2,8 @@ package com.controller;
 
 import com.entity.Notice;
 import com.service.NoticeService;
+import java.util.List;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,4 +34,8 @@ public class NoticeController {
         return this.noticeService.queryById(id);
     }
 
+    @RequestMapping("showALL")
+    public List<Notice> showAll(Model model){
+        return this.noticeService.queryAllByLimit(0,100);
+    }
 }

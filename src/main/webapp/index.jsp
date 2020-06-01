@@ -155,7 +155,7 @@
             </li>
 
             <li role="presentation">
-                <a href="#" target="mainFrame">公告管理</a>
+                <a href="notice.jsp" target="mainFrame">公告管理</a>
             </li>
 
         </ul>

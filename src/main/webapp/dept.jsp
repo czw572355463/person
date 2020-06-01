@@ -30,17 +30,29 @@
 
     </tbody>
 
+</table>
 
     <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
         <div class="modal-dialog">
+
             <div class="modal-content">
+                <!--标题-->
                 <div class="modal-header">
+
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
                     <h4 class="modal-title" id="myModalLabel">部门修改</h4>
                 </div>
 
+
+
                 <div class="modal-body">
-                    <form action="/dept/update" class="bs-example bs-example-form" method="post">
+                    <form action="dept/update" class="bs-example bs-example-form" method="get">
+                        <div  class="form-group" style="display: none">
+                            <input type="text" id="deptId" name="dId"/>
+                        </div>
+
 
                         <div  class="form-group">
                             <label for="deptName" class="col-form-label">部门名称</label>
@@ -52,17 +64,18 @@
                             <input type="text" id="deptRemark" name="dRemark" class="form-control" placeholder=""/>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-primary">提交更改</button>
-                        </div>
-
                     </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交更改</button>
+                    </div>
             </div>
-
+            </div>
+        </div>
         </div>
 
-</table>
+
 <script>
     window.onload = function () {
         $.get("dept/showAll","pageNum=1&size=5",function (res) {
@@ -91,6 +104,7 @@
             var deptName = tr.childNodes[1].innerHTML;
             var deptRemark = tr.childNodes[2].innerHTML;
 
+            $("#deptId").val(deptId)
             $("#deptName").val(deptName)
             $("#deptRemark").val(deptRemark)
     }

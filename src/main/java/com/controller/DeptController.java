@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * (Dept)表控制层
@@ -43,8 +44,9 @@ public class DeptController {
 
     @RequestMapping("update")
     @ResponseBody
-    public String update(Dept dept){
+    public String update(Dept dept, HttpServletResponse resp){
+        resp.setContentType("text/html;charset=UTF-8");
         this.deptService.update(dept);
-        return "<script> window.alert('修改成功!');location.reload()</script>";
+        return "<script>window.alert('修改成功!');location.href='../dept.jsp'</script>";
     }
 }
