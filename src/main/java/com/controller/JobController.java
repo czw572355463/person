@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("job")
+
+// addEmp job/emp
 public class JobController {
     /**
      * 服务对象

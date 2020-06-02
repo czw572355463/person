@@ -3,6 +3,10 @@ package com.controller;
 import com.entity.Users;
 import com.service.UsersService;
 import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpRequest;
+
 import java.util.*;
 
 /**
@@ -45,17 +49,28 @@ public class UsersController {
     }
 
     @RequestMapping("login")
-    public void login(Users users, HttpServletRequest request , HttpServletResponse response) throws IOException {
+    public String login(Users users, HttpServletRequest request , HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         Users user =  this.usersService.login(users);
         PrintWriter writer =  response.getWriter();
-        if(user == null){
-            writer.print("<script>alert('错误!请检查你的用户名或密码');location.href='../login.jsp'</script>");
+
+        System.out.println("3333333333333333333333333333333333333333333333333333333333333333333333333333333333");
+
+
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getULoginname(),user.getUPass());
+        Subject subject = SecurityUtils.getSubject();
+
+        try {
+            subject.login(token);
+            System.out.println("11111111111111111111111111111111111111111111111111111111111111111111111111111");
+            return "success";
+        }catch (AuthenticationException e){
+            e.printStackTrace();
+            System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222");
+            return "login";
         }
-        else {
-            request.getSession().setAttribute("users",user);
-            writer.print("<script>location.href='../index.jsp'</script>");
-        }
+
+
     }
 
     @GetMapping("showAll")
