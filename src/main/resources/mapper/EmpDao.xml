@@ -13,7 +13,6 @@
         <result property="ePhone" column="e_phone" jdbcType="VARCHAR"/>
         <result property="eEmail" column="e_email" jdbcType="VARCHAR"/>
         <result property="eSex" column="e_sex" jdbcType="VARCHAR"/>
-        <result property="eBirthday" column="e_birthday" jdbcType="TIMESTAMP"/>
         <result property="eCreatedate" column="e_createDate" jdbcType="TIMESTAMP"/>
         <association property="job" autoMapping="true" javaType="com.entity.Job">
             <id property="jId" column="j_id"></id>
@@ -32,7 +31,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="EmpMap">
         select
-          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_createDate
         from hrm_db.emp
         where e_id = #{eId}
     </select>
@@ -40,15 +39,15 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="EmpMap">
         select
-          e_id, d_name, j_name, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
-        from hrm_db.emp inner join  hrm_db.dept inner join hrm_db.job
+          e_id, d_name, j_name, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex,e_createDate
+        from hrm_db.emp e inner join  hrm_db.dept  d inner join hrm_db.job j where e.j_id = j.j_id and d.d_id = e.d_id
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="EmpMap">
         select
-          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate
+          e_id, d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_createDate
         from hrm_db.emp
         <where>
             <if test="eId != null">
@@ -81,9 +80,6 @@
             <if test="eSex != null and eSex != ''">
                 and e_sex = #{eSex}
             </if>
-            <if test="eBirthday != null">
-                and e_birthday = #{eBirthday}
-            </if>
             <if test="eCreatedate != null">
                 and e_createDate = #{eCreatedate}
             </if>
@@ -92,8 +88,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="eId" useGeneratedKeys="true">
-        insert into hrm_db.emp(d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_birthday, e_createDate)
-        values (#{dId}, #{jId}, #{eName}, #{eCardid}, #{eAddress}, #{ePostcode}, #{ePhone}, #{eEmail}, #{eSex}, #{eBirthday}, #{eCreatedate})
+        insert into hrm_db.emp(d_id, j_id, e_name, e_cardid, e_address, e_postCode, e_phone, e_email, e_sex, e_createDate)
+        values (#{dId}, #{jId}, #{eName}, #{eCardid}, #{eAddress}, #{ePostcode}, #{ePhone}, #{eEmail}, #{eSex},  #{eCreatedate})
     </insert>
 
     <!--通过主键修改数据-->
@@ -126,9 +122,6 @@
             </if>
             <if test="eSex != null and eSex != ''">
                 e_sex = #{eSex},
-            </if>
-            <if test="eBirthday != null">
-                e_birthday = #{eBirthday},
             </if>
             <if test="eCreatedate != null">
                 e_createDate = #{eCreatedate},

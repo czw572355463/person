@@ -6,8 +6,7 @@ public class shiroTest {
 
     @Test
     public void Test() {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext-datasource.xml");
-        System.out.println("111111111111111111111111111111111111111111111111111111111111111111");
-        System.out.println(applicationContext.getBean("shiroFliter"));
+       int height = 165;
+        System.out.println((height -80 ) *0.7);
     }
 }

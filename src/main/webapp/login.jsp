@@ -19,7 +19,7 @@
     <h1 align="center" class="font-weight-bolder">人事管理系统登陆</h1>
     <div class="container" style="background-color: #FFFFFF;height: 500px;margin-left: 28%;width: 40%;">
         <div style="padding: 100px 100px 10px;">
-            <form class="bs-example bs-example-form" role="form" action="/users/login" method="get">
+            <form class="bs-example bs-example-form" role="form" action="userlogin" method="get">
                 <p>用户名:</p>
                 <div class="input-group" >
                     <span class="input-group-addon">@</span>

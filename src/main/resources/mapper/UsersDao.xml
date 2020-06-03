@@ -103,4 +103,22 @@
     </select>
 
 
+    <select id="queryUserRoles" resultType="String">
+        select role.rname from role where rid in
+        (select user_role.rid from user_role where u_id =
+         (select users.u_id from users where u_loginname =#{username}))
+    </select>
+
+    <select id="queryUserPerms" resultType="String">
+        select a.pername from permission a
+        inner join role_permission rp on a.pid = rp.pid
+        inner join role r on rp.rid = r.rid
+        inner join user_role ur on r.rid = ur.rid
+        inner join users u on ur.u_id = u.u_id
+        where u_loginname =#{username}
+    </select>
+
+    <select id="queryByUsername" resultType="com.entity.Users">
+        select * from  users where u_loginname=#{usename}
+    </select>
 </mapper>

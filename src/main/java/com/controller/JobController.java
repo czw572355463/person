@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("job")
 
+
 // addEmp job/emp
 public class JobController {
     /**
@@ -40,7 +41,7 @@ public class JobController {
 
     @GetMapping("showAll")
     public List<Job> showAll(int pageNum,int size){
-        return this.jobService.queryAllByLimit(pageNum - 1 , size);
+        return this.jobService.queryAllByLimit(0 , 100);
     }
 
     @RequestMapping("update")

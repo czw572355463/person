@@ -37,7 +37,7 @@
 </table>
 
 <script>
-    window.onload = function () { $.get("users/showAll","pageNum=1&size=5",function (res) {
+    window.onload = function () { $.get("showAll","pageNum=1&size=5",function (res) {
         $("#tr1").empty();
         for (var i = 0 ; i < res.length; i++){
             var html = "<tr>";
@@ -49,7 +49,6 @@
             html+="</tr>"
             $("#tr1").append(html);
         }
-
     }) }
 
 </script>

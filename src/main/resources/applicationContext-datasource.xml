@@ -51,11 +51,10 @@
             <value>
                 /assets/**=anon
                 /index.jsp=anon
-                /login=anon
+                /userlogin=anon
                 /logout=logout
-                /admin/**=roles[amdin]
-                /emp/**=perms[修改权限]
                 /**=authc
+
             </value>
         </property>
     </bean>
@@ -65,4 +64,13 @@
     </bean>
 
     <bean id="userRealm" class="com.shiro.UserReaml"></bean>
+
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">unauthorized</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

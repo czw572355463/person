@@ -46,6 +46,15 @@
         <property name="maxUploadSize" value="10485760"></property>
     </bean>
 
+    <import resource="applicationContext-datasource.xml" ></import>
+
+  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"> </bean>
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"></property>
+    </bean>
+
+    <bean class="com.exception.Myexception"></bean>
 
 
 </beans>

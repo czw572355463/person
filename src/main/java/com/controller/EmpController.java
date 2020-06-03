@@ -8,11 +8,13 @@ import com.service.EmpService;
 import java.util.List;
 
 import com.service.JobService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * (Emp)表控制层
@@ -46,16 +48,17 @@ public class EmpController {
         return this.empService.queryById(id);
     }
 
+    @RequiresPermissions("修改权限")
     @GetMapping("showAll")
     public List<Emp> showAll(int pageNum , int size){
-
-        return this.empService.queryAllByLimit(pageNum, size);
+        return this.empService.queryAllByLimit(0, 100);
     }
+
 
     @RequestMapping("showAllDept")
     @ResponseBody
     public List<Dept> showAllJob(){
-        return this.deptService.queryAllByLimit(1,100);
+        return this.deptService.queryAllByLimit(0,100);
     }
 
     @RequestMapping("showAllJob")
@@ -63,10 +66,18 @@ public class EmpController {
     public List<Job> showAllDept(){
         return this.jobService.queryAllByLimit(0,100);
     }
+
     @RequestMapping("update")
-    public String update(Emp emp){
+    public String update(Emp emp, HttpServletResponse response){
+        response.setContentType("html/text;charset=utf-8");
         this.empService.update(emp);
         return "<script>window.alert('修改成功!');location.href='../emp.jsp'</script>";
     }
 
+    @RequestMapping("add")
+    public String insert(Emp emp){
+        System.out.println(emp.getDId());
+        this.empService.insert(emp);
+        return "emp";
+    }
 }

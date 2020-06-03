@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.entity.Emp;
 import com.entity.Users;
 import com.service.UsersService;
 import org.apache.ibatis.annotations.Param;
@@ -27,13 +28,11 @@ import java.util.*;
  * @since 2020-05-26 13:13:50
  */
 @Controller
-@RequestMapping("users")
 public class UsersController {
     /**
      * 服务对象
      */
     @Resource
-
     private UsersService usersService;
 
     /**
@@ -48,34 +47,30 @@ public class UsersController {
         return this.usersService.queryById(id);
     }
 
-    @RequestMapping("login")
+    @RequestMapping("userlogin")
     public String login(Users users, HttpServletRequest request , HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         Users user =  this.usersService.login(users);
         PrintWriter writer =  response.getWriter();
-
-        System.out.println("3333333333333333333333333333333333333333333333333333333333333333333333333333333333");
-
 
         UsernamePasswordToken token = new UsernamePasswordToken(user.getULoginname(),user.getUPass());
         Subject subject = SecurityUtils.getSubject();
 
         try {
             subject.login(token);
-            System.out.println("11111111111111111111111111111111111111111111111111111111111111111111111111111");
-            return "success";
+            request.getSession().setAttribute("users",user);
+            return "redirect:index.jsp";
         }catch (AuthenticationException e){
             e.printStackTrace();
-            System.out.println("222222222222222222222222222222222222222222222222222222222222222222222222222");
-            return "login";
+            return "redirect:login.jsp";
         }
-
-
     }
 
     @GetMapping("showAll")
     @ResponseBody
     public List<Users> showAll(int pageNum  , int size){
-        return this.usersService.queryAllByLimit(pageNum -1  ,size);
+        return this.usersService.queryAllByLimit(0 ,100);
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.dao;
 import com.entity.Users;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
+import java.util.Set;
 
 /**
  * (Users)表数据库访问层
@@ -68,4 +69,9 @@ public interface UsersDao {
      * @return
      */
     Users login(Users users);
+
+    Set<String> queryUserRoles(String userName);
+    Set<String> queryUserPerms(String userName);
+    Users queryByUsername(String userName);
+
 }

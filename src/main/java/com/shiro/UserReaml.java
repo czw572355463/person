@@ -1,6 +1,5 @@
 package com.shiro;
 
-import com.dao.UserDao;
 import com.dao.UsersDao;
 import com.entity.Users;
 import org.apache.shiro.authc.*;
@@ -11,17 +10,15 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resources;
 @Service
 public class UserReaml extends AuthorizingRealm {
 
     @Autowired
-    UserDao usersDao;
+    UsersDao usersDao;
 
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(usersDao.queryUserRoles(principalCollection.toString()));
         authorizationInfo.setStringPermissions(usersDao.queryUserPerms(principalCollection.toString()));

@@ -21,7 +21,7 @@
 </head>
 <body>
 
-
+<button class="btn btn-default lg" onclick="addEmp(this)"  data-toggle='modal' data-target='#addEmp'>添加员工</button>
 <table class="table table-bordered table-condensed">
     <caption>用户管理系统</caption>
 
@@ -117,34 +117,129 @@
                 </div>
         </div>
     </div>
+</div>
+
+
+<div class="modal fade" id="addEmp" tabindex="-1" role="dialog" aria-labelledby="My" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="My">职员添加</h4>
             </div>
+
+            <div class="modal-body">
+                <form action="emp/add" class="bs-example bs-example-form" method="get">
+
+                    <div  class="form-group">
+                        <label for="eName" class="col-form-label">员工名称</label>
+                        <input type="text" id="eName" name="eName" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div  class="">
+                        <label class="col-form-label">员工性别</label><br>
+                        <input type="radio" name="eSex" class="" value="男" placeholder=""/>男
+                        <input type="radio" name="eSex" class="" value="女" placeholder=""/>女
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="eJob" class="col-form-label">员工职位</label>
+                        <select id="eJob" name="jId">
+
+                        </select>
+                        </input>
+                    </div>
+
+                    <label for="eDept" class="col-form-label">员工部门</label>
+                    <select id="eDept" name="dId">
+
+                    </select>
+
+                    <div  class="form-group">
+                        <label for="eCardid" class="col-form-label">员工身份证</label>
+                        <input type="text" id="eCardid" name="eCardid" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="eAddress" class="col-form-label">员工住址</label>
+                        <input type="text" id="eAddress" name="eAddress" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="ePhone" class="col-form-label">员工电话</label>
+                        <input type="text" id="ePhone" name="ePhone" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="eEmail" class="col-form-label">员工邮箱</label>
+                        <input type="text" id="eEmail" name="eEmail" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div  class="form-group">
+                        <label for="ePostcode" class="col-form-label">员工邮编</label>
+                        <input type="text" id="ePostcode" name="ePostcode" class="form-control" placeholder=""/>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交更改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 <script>
 
     function addEmp(obj){
-        console.log("test")
+        var nodes = obj.parentNode.parentNode.parentNode.childNodes;
+
+        $.get("emp/showAllJob",function (res) {
+            $("#eJob").empty();
+
+            for(var i = 0 ; i < res.length ; i++){
+                $("#eJob").append("<option value='"+res[i].jid+"'>"+ res[i].jname+"</option>")
+            }
+        })
+
+        $.get("emp/showAllDept",function (res) {
+            $("#eDept").empty();
+
+            for(var i = 0 ; i < res.length ; i++){
+                console.log(res[i].did)
+                $("#eDept").append("<option value='"+res[i].did+"'>"+ res[i].dname+"</option>")
+            }
+        })
+
+
     }
 
     window.onload= function () {
         $.get("emp/showAll","pageNum=1&size=5",function (res) {
             $("#tr1").empty();
 
-            for (var i = 0 ; i < res.length; i++){
-                var html = "<tr>";
-                html+= "<td>"+res[i].eid +"</td>"
-                html+= "<td>"+res[i].ename +"</td>"
-                html+= "<td>"+res[i].esex +"</td>"
-                html+= "<td>"+res[i].job.jname +"</td>"
-                html+= "<td>"+res[i].dept.dname +"</td>"
-                html+= "<td>"+res[i].ecardid +"</td>"
-                html+= "<td>"+res[i].eaddress +"</td>"
-                html+= "<td>"+res[i].ephone +"</td>"
-                html+= "<td>"+res[i].eemail +"</td>"
-                html+= "<td>"+res[i].ecreatedate +"</td>"
-                html+="<td><div class='btn-group'><button type='button'  data-toggle='modal' data-target='#update' onclick='update(this)' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
-                html+="</tr>"
-                $("#tr1").append(html);
+            if(res.eid == undefined){
+                $("body").append(res)
             }
+                for (var i = 0 ; i < res.length; i++){
+                    var html = "<tr>";
+                    html+= "<td>"+res[i].eid +"</td>"
+                    html+= "<td>"+res[i].ename +"</td>"
+                    html+= "<td>"+res[i].esex +"</td>"
+                    html+= "<td>"+res[i].job.jname +"</td>"
+                    html+= "<td>"+res[i].dept.dname +"</td>"
+                    html+= "<td>"+res[i].ecardid +"</td>"
+                    html+= "<td>"+res[i].eaddress +"</td>"
+                    html+= "<td>"+res[i].ephone +"</td>"
+                    html+= "<td>"+res[i].eemail +"</td>"
+                    html+= "<td>"+res[i].ecreatedate +"</td>"
+                    html+="<td><div class='btn-group'><button type='button'  data-toggle='modal' data-target='#update' onclick='update(this)' class='btn btn-default'>修改</button><button type='button' class='btn btn-default'>删除</button></div>"
+                    html+="</tr>"
+                    $("#tr1").append(html);
+                }
         })
     }
 

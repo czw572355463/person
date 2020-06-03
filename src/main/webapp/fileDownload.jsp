@@ -43,9 +43,6 @@
 <script>
     function deleteDocument(id,filepath) {
         $.get("../document/delete","id="+id+"&filepath="+filepath,function (res) {
-            // console.log(res)
-            // $(this).parent().empty();
-            // $("body").remove(this.parent())
             window.alert("删除成功")
             location.reload();
         })

@@ -38,7 +38,7 @@ public class DeptController {
     @GetMapping("showAll")
     @ResponseBody
     public List<Dept> showAll(int pageNum , int size){
-        List<Dept> deptList = this.deptService.queryAllByLimit(pageNum - 1,size);
+        List<Dept> deptList = this.deptService.queryAllByLimit(0,100);
         return deptList;
     }
 
